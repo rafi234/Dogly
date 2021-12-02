@@ -1,0 +1,216 @@
+body{
+    margin: 0;
+}
+
+.conteiner {
+    width: 100vm;
+    height:  100vh;
+    background: transparent linear-gradient(180deg, #7FF7B4 0%, #3DC27C 100%, #2A87AF 100%, #000000 100%) 0% 0% no-repeat padding-box;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.logo {
+    width: 55%;
+    text-align: center;
+}
+
+.logo > img {
+    width: 70%;
+    margin: auto;
+}
+
+.login-container {
+    width: 80%;
+}
+
+
+.center-line {
+    align-items: left;
+    width: 0%;
+}
+
+hr {
+    border: 1px solid #707070;
+    height: 80vh;
+    width: 0;
+}
+
+form.login {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+button {
+    background: transparent linear-gradient(180deg, #707070 0%, #5A5A5A 100%) 0% 0% no-repeat padding-box;
+    box-shadow: 0px 3px 6px #00000029;
+    border: none;
+    border-radius: 1.5vw;
+    margin: 0.5em;
+    line-height: 2em;
+    width: 30%;
+    font-size: large;
+    color: #52D38E;
+}
+
+input {
+    background-color: transparent;
+    border: none;
+    border-bottom: 2px solid #707070;
+    margin: 1em;
+    padding: 1em;
+    width: 50%;
+    font-size: larger;
+}
+
+@media only screen and (max-device-width: 420px){
+    .conteiner{
+        flex-direction: column;
+    }
+
+    * {
+        font-size: 30px;
+    }
+
+    .login-container, .logo {
+        width: 100%;
+        height: 40%;
+    }
+
+    .center-line{
+        width: none;
+    }
+    form{
+        margin: auto;
+        height: 40%;
+    }
+
+    hr {
+        height: 0;
+        width: 0;
+    }
+
+    button {
+        font-size: xx-large;
+    }
+
+}
+
+.base-container{
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    height:  100vh;
+}
+
+nav {
+    width: 20vw;
+    height: 100%;
+    background: transparent linear-gradient(180deg, #7FF7B4 0%, #3DC27C 100%) 0% 0% no-repeat padding-box;
+    box-shadow: 0px 3px 6px #00000029;
+    border-radius: 0px 10px 0px 0px;
+
+    display: flex;
+    flex-direction:  column;
+    justify-content: flex-start;
+}
+
+main {
+width: 80vw;
+}
+
+nav > img {
+    width: 65%;
+    margin: 2em auto;
+}
+
+a {
+    text-decoration: none;
+    display: inline-block;
+    line-height: 2em;
+}
+
+li i {
+    font-size: 2em;
+}
+
+.button {
+    background: transparent linear-gradient(180deg, #707070 0%, #606060 100%) 0% 0% no-repeat padding-box;
+    box-shadow: 0px 3px 6px #00000029;
+    border: 2px solid #707070;
+    border-radius: 1em;
+    margin-left: 1em;
+    text-align: center;
+    color: #52D38E;
+    padding: 0.2em;
+    width: 60%;
+}
+
+ul {
+    list-style-type: none;
+    color: #707070;
+    font: normal normal normal 38px/51px Yrsa;
+    letter-spacing: 0.7px;
+    font-size: x-large;
+    margin: 0 auto;
+    padding: 0%;
+    width: calc(100% - 40px);
+    height: 100%;
+    position: relative;
+}
+
+li {
+    text-align: left;
+    margin-bottom: 1em;
+}
+
+li:last-child {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
+
+.fa, .fas {
+    width: 1em;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    background: transparent linear-gradient(180deg, #707070 0%, #5A5A5A 31%, #565656 38%, #505050 47%, #434343 65%, #3D3D3D 83%, #333333 100%) 0% 0% no-repeat padding-box;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    padding: 1em 2em;
+    border-bottom: 1px solid #7FF7B4;
+}
+
+.search-bar {
+    width: 50%;
+}
+
+.icons {
+    height: 100%;
+    width: 0;
+    border: 1px solid #7FF7B4;
+}
+
+.upper-icons {
+    display: flex;
+    width: 20%;
+}
+
+.upper-icons i {
+    margin: 1em;
+    font-size: 2em;
+    color: transparent linear-gradient(180deg, #7FF7B4 0%, #3DC27C 100%) 0% 0% no-repeat padding-box;
+    box-shadow: 0px 3px 6px #00000029;
+} 
