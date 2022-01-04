@@ -9,4 +9,6 @@
     Routing::get('main_page', 'DefaultController');
     Routing::get('walk_page', 'DefaultController');
     Routing::get('meetings_page', 'DefaultController');
+    Routing::post('login', 'SecurityController');
+
     Routing::run($path);
