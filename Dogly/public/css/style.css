@@ -3,8 +3,8 @@ body{
     background: #333;
 }
 
-.conteiner {
-    background: transparent linear-gradient(180deg, #7FF7B4 0%, #3DC27C 100%, #2A87AF 100%, #000000 100%) 0% 0% no-repeat padding-box;
+.container {
+    background: transparent linear-gradient(180deg, #7FF7B4 0%, #3DC27C 100%, #2A87AF 100%, #000000 100%) 0 0 no-repeat padding-box;
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -44,7 +44,7 @@ form.login {
 }
 
 button {
-    background: transparent linear-gradient(180deg, #707070 0%, #5A5A5A 100%) 0% 0% no-repeat padding-box;
+    background: transparent linear-gradient(180deg, #707070 0%, #5A5A5A 100%) 0 0 no-repeat padding-box;
     box-shadow: 0 3px 6px #00000029;
     border: none;
     border-radius: 1.5vw;
@@ -55,7 +55,7 @@ button {
     color: #52D38E;
 }
 
-.login, .search-bar input {
+.login > .search-bar > input {
     background-color: transparent;
     border: none;
     border-bottom: 2px solid #707070;
@@ -66,7 +66,7 @@ button {
 }
 
 @media only screen and (max-device-width: 420px){
-    .conteiner{
+    .container{
         flex-direction: column;
     }
 
@@ -139,7 +139,7 @@ li i {
 }
 
 .button {
-    background: transparent linear-gradient(180deg, #707070 0%, #606060 100%) 0% 0% no-repeat padding-box;
+    background: transparent linear-gradient(180deg, #707070 0%, #606060 100%) 0 0 no-repeat padding-box;
     box-shadow: 0 3px 6px #00000029;
     border: 2px solid #707070;
     border-radius: 1em;
@@ -220,7 +220,7 @@ main {
 
 
 .search-bar > form > input {
-    background: transparent linear-gradient(180deg, #7FF7B4 0%, #3DC27C 100%) 0% 0% no-repeat padding-box;
+    background: transparent linear-gradient(180deg, #7FF7B4 0%, #3DC27C 100%) 0 0 no-repeat padding-box;
     box-shadow: 0 3px 6px #00000029;
     border: 1px solid #707070;
     border-radius: 3em;
@@ -306,7 +306,7 @@ main {
     font-size: 0.8vw;
     padding: 0.2em;
 
-    background: transparent linear-gradient(180deg, #7FF7B4 0%, #3DC27C 100%) 0% 0% no-repeat padding-box;
+    background: transparent linear-gradient(180deg, #7FF7B4 0%, #3DC27C 100%) 0 0 no-repeat padding-box;
 }
 
 .announcement-img {
@@ -379,7 +379,7 @@ main {
 }
 
 .mp-main-section {
-    background: transparent linear-gradient(180deg, #7FF7B4 0%, #3DC27C 100%) 0% 0% no-repeat padding-box;
+    background: transparent linear-gradient(180deg, #7FF7B4 0%, #3DC27C 100%) 0 0 no-repeat padding-box;
     border-radius: 0 2em 2em 0;
 
     font: normal normal bold 8px/12px Arial;
@@ -566,4 +566,84 @@ main {
     font-size: 0.75vw;
     letter-spacing: 1px;
 }
+
+.registration-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.registration {
+    height: 100vh;
+    width: 50vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.registration-container {
+    height: 100vh;
+    width: 100vw;
+}
+
+.registration-container > .logo > img {
+    width: 30vw;
+
+}
+.registration > form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.registration > form > input {
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid #2CB16B;
+    padding: 1em;
+    margin: 1em;
+    text-align: left;
+    width: 25vw;
+}
+
+.registration > form > button {
+    width: 10em;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

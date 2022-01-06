@@ -21,4 +21,8 @@
         public function meetings_page(){
             $this->render('meetings-page');
         }
+
+        public function registration(){
+            $this->render('registration');
+        }
     }
