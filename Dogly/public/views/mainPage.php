@@ -9,47 +9,15 @@
 <body>
     <div class="base-container">
         <nav>
-            <img src="public/img/logo.svg">
-            <ul>
-                <li>
-                    <i class="fas fa-user"></i>
-                    <a href="#" class="button">People</a>
-                </li>
-                <li>
-                    <i class="fas fa-walking"></i>
-                    <a href="#" class="button">Walk</a>
-                </li>
-                <li>
-                    <i class="fas fa-paw"></i>
-                    <a href="#" class="button">Long-term care</a>
-                </li>
-                <li>
-                    <i class="fab fa-meetup"></i>
-                    <a href="#" class="button" id="meetings">Dog meetings</a>
-                </li>
-                <li>
-                    <i class="fas fa-bell"></i>
-                    <a href="#" class="button">Notification</a>
-                </li>
-                <li>
-                    <i class="fas fa-cog"></i>
-                    <a href="#" class="button">Settings</a>
-                </li>
-            </ul>
+            <a href="http://localhost:8080/mainPage">
+                <img src="public/img/logo.svg" alt="Dogly logo">
+            </a>
+
+            <?php include ('templates/navigation.php');?>
         </nav>
         <main>
             <header id="main-header">
-                <div class="search-bar">
-                    <form class="search">
-                        <input type="search" placeholder="search">
-                    </form>
-                </div>
-
-                <div class="upper-icons">
-                    <a href="#"><i class="far fa-comment-dots"></i></a>
-                    <a href="#"><i class="fas fa-user-circle"></i></a>
-                    <a href="#"><i class="fas fa-sign-out-alt"></i></a>
-                </div>
+               <?php include ('templates/header.php'); ?>
             </header>
 
             <section class="main-page">
@@ -61,20 +29,10 @@
                     <h2>Top priority</h2>
                     <div id="top-priority-announcements">
                         <div class="announcement">
-                            <header class="announcement-header">
-                                <div class="dog-name">Name</div>
-                                <div class="dog-age">age</div>
-                                <div class="dog-price">price</div>
-                            </header>
-                            <img class="announcement-img" src="public/img/pies.jpg">
+                            <?php include('templates/walkAnnouncement.php');?>
                         </div>
                         <div class="announcement">
-                            <header class="announcement-header">
-                                <div class="dog-name">Name</div>
-                                <div class="dog-age">age</div>
-                                <div class="dog-price">price</div>
-                            </header>
-                            <img class="announcement-img" src="public/img/pies.jpg">
+                            <?php include('templates/walkAnnouncement.php');?>
                         </div>
                     </div>
                     <footer id="top-priority-footer">

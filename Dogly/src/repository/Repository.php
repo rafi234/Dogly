@@ -2,9 +2,12 @@
 require_once __DIR__.'/../../Database.php';
 class Repository
 {
-    protected $database;
+    private static $database = null;
 
-    public function __construct() {
-        $this->database = new Database();
+    protected static function getRepository() : Database{
+        if(self::$database == null) {
+            self::$database = new Database();
+        }
+        return self::$database;
     }
 }

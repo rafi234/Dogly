@@ -2,10 +2,10 @@
 require_once 'Repository.php';
 require_once __DIR__.'/../models/Meeting.php';
 
-class MeetingsRepository extends  Repository
+class MeetingsRepository extends Repository
 {
     public function getMeeting(int $id): ?Meeting {
-       $stmt = $this->database->connect()->prepare('
+       $stmt = parent::getRepository()->connect()->prepare('
     SELECT * FROM meetings WHERE id = :id
 ');
 
@@ -21,14 +21,29 @@ class MeetingsRepository extends  Repository
        return new Meeting(
            $meeting['place'],
            $meeting['date'],
-           $meeting['interested']
+           $meeting['interested'],
+           $meeting['file']
        );
     }
 
     public function addMeeting(Meeting $meeting) : void {
-        $date = new DateTime();
-        $stmt = $this->database->connect()->prepare('
-         INSERT INTO meetings
+        $stmt = parent::getRepository()->connect()->prepare('
+         INSERT INTO meetings (place, date, interested, going, description, id_assigned_by, file)
+         VALUES (?, ?, ?, ?, ?, ?, ?)
         ');
+
+        $assigned_by = 1;
+        $interested = 0;
+        $going = 0;
+
+        $stmt->execute([
+            $meeting->getPlace(),
+            $meeting->getDate(),
+            $interested,
+            $going,
+            $meeting->getDescription(),
+            $assigned_by,
+            $meeting->getFile()
+        ]);
     }
 }

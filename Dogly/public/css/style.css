@@ -4,11 +4,12 @@ body{
 }
 
 .container {
-    background: transparent linear-gradient(180deg, #7FF7B4 0%, #3DC27C 100%, #2A87AF 100%, #000000 100%) 0 0 no-repeat padding-box;
+    background: #333;
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
+    height: 100vh;
 }
 
 .logo {
@@ -43,7 +44,7 @@ form.login {
     align-items: center;
 }
 
-button {
+button, .login-container > form > a {
     background: transparent linear-gradient(180deg, #707070 0%, #5A5A5A 100%) 0 0 no-repeat padding-box;
     box-shadow: 0 3px 6px #00000029;
     border: none;
@@ -53,6 +54,17 @@ button {
     width: 30%;
     font-size: large;
     color: #52D38E;
+    cursor: pointer;
+}
+
+.login-container > form > a {
+    text-align: center;
+    font: normal normal normal 19px arial;
+    padding: 0.4em 0.1em;
+}
+
+button:hover {
+    background: transparent linear-gradient(180deg, #606060 0%, #494949 100%) 0 0 no-repeat padding-box;
 }
 
 .login > .search-bar > input {
@@ -123,16 +135,19 @@ main {
     width: 80vw;
 }
 
-nav > img {
-    width: 65%;
-    margin: 2em auto;
-}
-
 a {
     text-decoration: none;
     display: inline-block;
     line-height: 2em;
 }
+
+a > img {
+    display: block;
+    width: 65%;
+    margin: 2em auto;
+}
+
+
 
 li i {
     font-size: 2em;
@@ -205,7 +220,7 @@ main {
 .upper-icons {
     display: flex;
     width: auto;
-    font-size: calc(3vh + 12px);
+    font-size: calc(2.5vh + 12px);
     text-shadow: 0 3px 6px #00000029;
 }
 
@@ -228,7 +243,8 @@ main {
     letter-spacing: 1.3px;
     color: #707070;
     padding: 0.5em 1em 0.5em 3em;
-    margin-left: 0;
+    margin: 1em;
+    width: 40%;
 }
 
 .upper-icons i:hover {
@@ -612,12 +628,69 @@ main {
     width: 10em;
 }
 
+.add-meeting {
+    margin: 3em 4em;
+    font: normal normal normal 2.3em/1em Yrsa;
+    font-weight: 700;
+    color: #111;
 
+}
 
+.add-meeting > form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+}
 
+.add-meeting > form > input {
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid #2CB16B;
+    padding: 1em;
+    margin: 1.5em;
+    text-align: left;
+    width: 25vw;
 
+}
 
+.add-meeting > form > input::placeholder {
+    color: #111;
+}
 
+.add-meeting > form > button {
+    margin-left: 4em;
+}
+
+.custom-upload-file-button::-webkit-file-upload-button {
+    visibility: hidden;
+}
+
+.custom-upload-file-button::before {
+    content: 'Select files';
+    display: inline-block;
+    background: transparent linear-gradient(
+            180deg, #707070 0%, #5A5A5A 100%) 0 0 no-repeat padding-box;
+    color: #52D38E;
+    border: none;
+    border-radius: 1em;
+    padding: 0.5em 1em;
+    -webkit-user-select: none;
+    cursor: pointer;
+    font-size: 10pt;
+}
+
+.custom-file-input:hover::before {
+    border-color: black;
+}
+.custom-file-input:active::before {
+    background: -webkit-linear-gradient(top, #e3e3e3, #f9f9f9);
+}
+
+div.messages {
+    color: firebrick;
+    margin: 1em;
+}
 
 
 
