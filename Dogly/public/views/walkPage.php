@@ -7,57 +7,30 @@
 </head>
 
 <body>
-    <div class="base-container">
-        <nav>
-            <?php include ('templates/navigation.php')?>
-        </nav>
-        <main>
-            <header id="main-header">
-                <?php include ('templates/header.php'); ?>
-            </header>
+<div class="base-container">
+    <nav>
+        <?php include('templates/navigation.php') ?>
+    </nav>
+    <main>
+        <header id="main-header">
+            <?php include('templates/header.php'); ?>
+        </header>
 
-            <section class="walk-page">
-                <div class="announcements">
-                    <div class="announcement" id="ad1">
-                        <?php include('templates/walkAnnouncement.php');?>
+        <section class="walk-page">
+            <a href="http://localhost:8080/addWalk">Add walk</a>
+            <div class="announcements">
+                <?php foreach ($walks as $walk) : ?>
+                    <div class="announcement">
+                        <header class="announcement-header">
+                            <div class="dog-name"><?= $walk->getName(); ?></div>
+                            <div class="dog-age"><?= $walk->getAge() . ' years'; ?></div>
+                            <div class="dog-price"><?= $walk->getPrice() . ' $'; ?></div>
+                        </header>
+                        <img class="announcement-img" src="public/uploads/<?= $walk->getImage(); ?>">
                     </div>
-                    <div class="announcement" id="ad2">
-                        <?php include('templates/walkAnnouncement.php');?>
-                    </div>
-                    <div class="announcement" id="ad3">
-                        <?php include('templates/walkAnnouncement.php');?>
-                    </div>
-                    <div class="announcement" id="ad4">
-                        <?php include('templates/walkAnnouncement.php');?>
-                    </div>
-                    <div class="announcement" id="ad5">
-                        <?php include('templates/walkAnnouncement.php');?>
-                    </div>
-                    <div class="announcement" id="ad6">
-                        <?php include('templates/walkAnnouncement.php');?>
-                    </div>
-                    <div class="announcement" id="ad7">
-                        <?php include('templates/walkAnnouncement.php');?>
-                    </div>
-                    <div class="announcement" id="ad8">
-                        <?php include('templates/walkAnnouncement.php');?>
-                    </div>
-                </div>
-
-                <div class="page-picker">
-                    <a href="#">
-                        <i class="fas fa-arrow-left"></i>
-                    </a>
-                    <a href="#">1</a>
-                    <a href="#">2</a>
-                    <a href="#">3</a>
-                    <a href="#">4</a>
-                    <a href="#">5</a>
-                    <a href="#">
-                        <i class="fas fa-arrow-right"></i>
-                    </a>
-                </div>
-            </section>
-        </main>
-    </div>
+                <?php endforeach; ?>
+            </div>
+        </section>
+    </main>
+</div>
 </body>

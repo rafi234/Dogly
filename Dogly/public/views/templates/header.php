@@ -1,8 +1,6 @@
 <?php
     echo '<div class="search-bar">
-                <form class="search">
                     <input type="search" placeholder="search">
-                </form>
             </div>
 
             <div class="upper-icons">

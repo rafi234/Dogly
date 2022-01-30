@@ -20,6 +20,13 @@ class MeetingsController extends AppController
         $this->meetingsRepository = new MeetingsRepository();
     }
 
+
+    public function meetings(){
+        $meetings = $this->meetingsRepository->getMeetings();
+        $this->render('meetings', ['meetings' => $meetings]);
+    }
+
+
     public function addMeeting() {
         if ($this->isPost()
             && is_uploaded_file($_FILES['file']['tmp_name'])
@@ -37,10 +44,36 @@ class MeetingsController extends AppController
             );
             $this->meetingsRepository->addMeeting($meeting);
 
-            return $this->render('meetings', ['messages' => $this->message]);
+            return $this->render('meetings', [
+                'meetings' => $this->meetingsRepository->getMeetings(),
+                'messages' => $this->message
+            ]);
         }
 
         return $this->render('addMeeting', ['messages' => $this->message]);
+    }
+
+    public function search() {
+        $contendType = isset($_SERVER["CONTEND_TYPE"]) ? trim($_SERVER["CONTEND_TYPE"]) : '';
+
+        if($contendType === 'application/json') {
+            $contend = trim(file_get_contents("php://input"));
+            $decoded = json_decode($contend, true);
+
+            header('Contend-Type: application/json');
+            http_response_code(200);
+            echo json_encode($this->meetingsRepository->getMeetingByTitle($decoded['search']));
+        }
+    }
+
+    public function going(int $id) {
+        $this->meetingsRepository->going($id);
+        http_response_code(200);
+    }
+
+    public function interested(int $id) {
+        $this->meetingsRepository->interested($id);
+        http_response_code(200);
     }
 
     private function validate(array $file): bool

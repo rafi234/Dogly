@@ -1,6 +1,10 @@
 <?php
 
 echo ' 
+        <a href="http://localhost:8080/mainPage">
+            <img src="public/img/logo.svg" alt="Dogly logo">
+        </a>
+        
         <ul>
             <li>
                 <i class="fas fa-user"></i>

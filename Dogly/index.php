@@ -7,18 +7,20 @@
 
     Routing::get('', 'DefaultController');
     Routing::get('mainPage', 'DefaultController');
-    Routing::get('registration', 'DefaultController');
+    Routing::get('registration', 'RegistrationController');
 
-    Routing::get('walkPage', 'DefaultController');
-    Routing::get('addWalk', 'DefaultController');
+    Routing::get('walkPage', 'WalkController');
+    Routing::get('addWalk', 'WalkController');
 
-    Routing::get('meetings', 'DefaultController');
-    Routing::get('addMeeting', 'DefaultController');
-
+    Routing::get('meetings', 'MeetingsController');
+    Routing::get('addMeeting', 'MeetingsController');
+    Routing::get('going', 'MeetingsController');
+    Routing::get('interested', 'MeetingsController');
 
     Routing::post('addMeeting', 'MeetingsController');
     Routing::post('addWalk', 'WalkController');
     Routing::post('login', 'SecurityController');
     Routing::post('registration', 'RegistrationController');
+    Routing::post('search', 'MeetingsController');
 
     Routing::run($path);

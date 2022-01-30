@@ -2,9 +2,9 @@
 require_once 'Repository.php';
 require_once __DIR__.'/../models/Dog.php';
 
-class DogRepository
+class DogRepository extends Repository
 {
-    public function getDogUsingOwnerById(int $id): ?Dog
+    public function getDog(int $id): ?Dog
     {
         $stmt = parent::getRepository()->connect()->prepare('
         SELECT * FROM dog where id = :id

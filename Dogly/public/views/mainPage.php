@@ -9,10 +9,6 @@
 <body>
     <div class="base-container">
         <nav>
-            <a href="http://localhost:8080/mainPage">
-                <img src="public/img/logo.svg" alt="Dogly logo">
-            </a>
-
             <?php include ('templates/navigation.php');?>
         </nav>
         <main>

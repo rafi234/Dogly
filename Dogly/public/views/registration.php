@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" type="text/css" href="public/css/style.css">
+    <script type="text/javascript" src="./public/js/script.js" defer></script>
     <title>Registration</title>
 </head>
 <body>
@@ -24,6 +25,7 @@
             </div>
             <input type="email" name="email" placeholder="email">
             <input type="password" name="password" placeholder="password">
+            <input type="password" name="passwordConfirmation" placeholder="confirm password">
             <input type="text" name="name" placeholder="name">
             <input type="text" name="surname" placeholder="surname">
             <input type="tel" name="phone_number" placeholder="phone number">

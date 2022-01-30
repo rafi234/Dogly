@@ -7,7 +7,7 @@ require_once __DIR__.'/../repository/WalkRepository.php';
 class RegistrationController extends AppController
 {
 
-    const PASSWORD_PATTERN = '/^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*[!@#$%^&*()_+|-])/';
+    const PASSWORD_PATTERN = '/^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])/';
     const PASSWORD_MIN_LENGTH = 7;
 
     private $userRepository;
@@ -21,7 +21,7 @@ class RegistrationController extends AppController
 
     public function registration() {
         if ($this->isPost()
-            && $this->checkIfDateIsCorrect($_POST['email'], $_POST['password'])
+            && $this->checkIfDateIsCorrect($_POST['email'], $_POST['password'], $_POST['passwordConfirmation'])
         ) {
 
             $hashedPassword = password_hash($_POST['password'], PASSWORD_ARGON2ID);
@@ -47,7 +47,8 @@ class RegistrationController extends AppController
 
     private function checkIfDateIsCorrect(
         string $email,
-        string $password
+        string $password,
+        string $passwordConfirmation
     ): bool
     {
         $isDataCorrect = true;
@@ -60,12 +61,17 @@ class RegistrationController extends AppController
         }
 
         if (!preg_match(self::PASSWORD_PATTERN, $password)) {
-            $this->message[] = 'Your password is too week. Password must contain big and small letter, number and special character.';
+            $this->message[] = 'Your password is too week. Password must contain big and small letter and number.';
             $isDataCorrect = false;
         }
 
         if(strlen($password) < self::PASSWORD_MIN_LENGTH){
             $this->message[] = 'Your password is too short. Password must be longer than 7 characters.';
+            $isDataCorrect = false;
+        }
+
+        if($password !== $passwordConfirmation) {
+            $this->message[] = 'Given passwords don\'t match';
             $isDataCorrect = false;
         }
 

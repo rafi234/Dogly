@@ -20,6 +20,11 @@ class WalkController extends AppController
         $this->walkRepository = new WalkRepository();
     }
 
+    public function walkPage(){
+        $walks = $this->walkRepository->getWalks();
+        $this->render('walkPage', ['walks' => $walks]);
+    }
+
     public function addWalk() {
         if ($this->isPost()
             && is_uploaded_file($_FILES['file']['tmp_name'])
@@ -38,7 +43,10 @@ class WalkController extends AppController
             );
             $this->walkRepository->addWalk($walk);
 
-            return $this->render('walkPage', ['messages' => $this->message]);
+            return $this->render('walkPage', [
+                'walks' => $this->walkRepository->getWalks(),
+                'messages' => $this->message
+            ]);
         }
 
         return $this->render('addWalk', ['messages' => $this->message]);

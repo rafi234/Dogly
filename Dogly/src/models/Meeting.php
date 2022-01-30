@@ -6,13 +6,51 @@ class Meeting
     private $date;
     private $description;
     private $file;
+    private $going;
+    private $interested;
+    private $id;
 
-    public function __construct(string $place, $date, string $description, string $file)
+    public function __construct(string $place, $date, string $description, string $file, $going = 0, $interested = 0, $id = null)
     {
         $this->place = $place;
         $this->date = $date;
         $this->description = $description;
         $this->file = $file;
+        $this->going = $going;
+        $this->interested = $interested;
+        $this->id = $id;
+    }
+
+    public function getGoing()
+    {
+        return $this->going;
+    }
+
+
+    public function setGoing($going): void
+    {
+        $this->going = $going;
+    }
+
+
+    public function getInterested()
+    {
+        return $this->interested;
+    }
+
+    public function setInterested($interested): void
+    {
+        $this->interested = $interested;
+    }
+
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    public function setId($id): void
+    {
+        $this->id = $id;
     }
 
     public function getPlace(): string
