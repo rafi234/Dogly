@@ -3,7 +3,6 @@
 <head>
     <link rel="stylesheet" type="text/css" href="public/css/style.css">
     <script src="https://kit.fontawesome.com/760d12b685.js" crossorigin="anonymous"></script>
-    <script type="text/javascript" src="./public/js/deleteCookie.js" defer></script>
     <title>walks</title>
 </head>
 

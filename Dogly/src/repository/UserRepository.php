@@ -80,7 +80,7 @@ class UserRepository extends  Repository
 
         $email = $user->getEmail();
         $password = $user->getPassword();
-        $salt = 1234234; //TODO
+        $salt = 1234234;
 
 
         $stmt->execute([
@@ -90,5 +90,17 @@ class UserRepository extends  Repository
             $salt,
             $date->format('Y-m-d H:i')
         ]);
+    }
+
+    public function setEnable(bool $value, int $id = null) : void {
+        if($id !== null){
+            $stmt = parent::getRepository()->connect()->prepare('
+         UPDATE users SET enabled = :value where id_user = :id
+        ');
+
+            $stmt->bindParam(':value', $value, PDO::PARAM_BOOL);
+            $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+            $stmt->execute();
+        }
     }
 }

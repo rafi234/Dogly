@@ -42,7 +42,7 @@ class MeetingsController extends AppController
                 $_POST['description'],
                 $_FILES['file']['name']
             );
-            $this->meetingsRepository->addMeeting($meeting);
+            $this->meetingsRepository->addMeeting($meeting, $_COOKIE['id_user']);
 
             return $this->render('meetings', [
                 'meetings' => $this->meetingsRepository->getMeetings(),
@@ -66,15 +66,13 @@ class MeetingsController extends AppController
         }
     }
 
-    public function going(int $id) {
-        $this->meetingsRepository->going($id);
-        http_response_code(200);
+    public function going(int $id, string $columnName) {
+        $this->incrementColumnValue($id, $columnName);
     }
 
-    public function interested(int $id) {
-        $this->meetingsRepository->interested($id);
-        http_response_code(200);
-    }
+   public function interested(int $id, string$columnName) {
+       $this->incrementColumnValue($id, $columnName);
+   }
 
     private function validate(array $file): bool
     {
@@ -88,5 +86,10 @@ class MeetingsController extends AppController
             return false;
         }
         return true;
+    }
+
+    private function incrementColumnValue(int $id, string $columnName) {
+        $this->meetingsRepository->incrementColumn($id, $columnName);
+        http_response_code(200);
     }
 }

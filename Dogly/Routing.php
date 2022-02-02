@@ -32,7 +32,8 @@
             $action = $action ?: 'index';
 
             $id = $urlParts[1] ?? '';
+            $name = $urlParts[0] ?? '';
 
-            $object->$action($id);
+            $object->$action($id, $name);
         }
     }

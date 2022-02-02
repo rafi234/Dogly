@@ -8,9 +8,4 @@
         {
             $this->render('login');
         }
-
-        public function mainPage()
-        {
-            $this->render('mainPage');
-        }
     }

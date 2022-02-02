@@ -7,5 +7,10 @@
             <div class="upper-icons">
                 <a href="#"><i class="far fa-comment-dots"></i></a>
                 <a href="#"><i class="fas fa-user-circle"></i></a>
-                <a href="http://localhost:8080"><i class="fas fa-sign-out-alt"></i></a>
+                <form action="logout" method="POST">
+                    <button type="submit">
+                        <i class="fas fa-sign-out-alt"></i>
+                    </button> 
+                </form>
+                
             </div>';

@@ -4,35 +4,14 @@ require_once __DIR__.'/../models/Meeting.php';
 
 class MeetingsRepository extends Repository
 {
-    public function getMeeting(int $id): ?Meeting {
-       $stmt = parent::getRepository()->connect()->prepare('
-            SELECT * FROM meetings WHERE id = :id
-       ');
 
-       $stmt->bindParam(':id', $id, PDO::PARAM_INT);
-       $stmt->execute();
-
-       $meeting = $stmt->fetch(PDO::FETCH_ASSOC);
-
-       if($meeting == false){
-            return null;
-       }
-
-       return new Meeting(
-           $meeting['place'],
-           $meeting['date'],
-           $meeting['interested'],
-           $meeting['file']
-       );
-    }
-
-    public function getMeetings(): ?array {
+    public function getMeetings(string $restOfQuery = ''): ?array {
         $result = [];
-        $stmt = parent::getRepository()->connect()->prepare('
-            SELECT * FROM meetings
-        ');
 
+        $query = 'SELECT * FROM meetings'." ".$restOfQuery;
+        $stmt = parent::getRepository()->connect()->prepare($query);
         $stmt->execute();
+
         $meetings = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
         foreach ($meetings as $meeting) {
@@ -43,30 +22,37 @@ class MeetingsRepository extends Repository
                 $meeting['file'],
                 $meeting['going'],
                 $meeting['interested'],
-                $meeting['id'],
+                $meeting['id']
             );
         }
         return  $result;
     }
 
-    public function addMeeting(Meeting $meeting) : void {
-        $stmt = parent::getRepository()->connect()->prepare('
-         INSERT INTO meetings (place, date, interested, going, description, id_assigned_by, file)
-         VALUES (?, ?, ?, ?, ?, ?, ?)
-        ');
+    public function addMeeting(Meeting $meeting, int $id_user) : void {
 
-        $assigned_by = 12; //TODO cookies
-        $interested = 0;
-        $going = 0;
+        $db = parent::getRepository()->connect();
+        $stmt = $db->prepare('
+         INSERT INTO meetings (place, date, description, id_assigned_by, file)
+         VALUES (?, ?, ?, ?, ?) RETURNING id
+        ');
 
         $stmt->execute([
             $meeting->getPlace(),
             $meeting->getDate(),
-            $interested,
-            $going,
             $meeting->getDescription(),
-            $assigned_by,
+            $id_user,
             $meeting->getFile()
+        ]);
+
+        $id_meeting = $db->lastInsertId();
+
+        $stmt = $db->prepare('
+        INSERT INTO user_meetings (id_user, id_meetings) VALUES (?, ?)
+        ');
+
+        $stmt->execute([
+            $id_user,
+            $id_meeting
         ]);
     }
 
@@ -82,20 +68,11 @@ class MeetingsRepository extends Repository
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function going(int $id)
+    public function incrementColumn(int $id, string $columnName)
     {
-        $stmt = parent::getRepository()->connect()->prepare('
-            UPDATE meetings SET going = going + 1 WHERE id = :id
-        ');
-        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
-        $stmt->execute();
-    }
-
-    public function interested(int $id)
-    {
-        $stmt = parent::getRepository()->connect()->prepare('
-            UPDATE meetings SET interested = interested + 1 WHERE id = :id
-        ');
+        $restOfQuery = $columnName.' = '.$columnName.' + 1 ';
+        $query = 'UPDATE meetings SET '.$restOfQuery.'WHERE id = :id';
+        $stmt = parent::getRepository()->connect()->prepare($query);
         $stmt->bindParam(':id', $id, PDO::PARAM_INT);
         $stmt->execute();
     }

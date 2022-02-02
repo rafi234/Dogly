@@ -1,8 +1,6 @@
 body {
     margin: 0;
     background: #333;
-
-    overflow-x: hidden;
 }
 
 .container {
@@ -199,7 +197,7 @@ main {
     text-shadow: 0 3px 6px #00000029;
 }
 
-.upper-icons > a {
+.upper-icons > a, .upper-icons > form {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -208,6 +206,23 @@ main {
     width: 5vw;
 }
 
+.upper-icons > form {
+    padding-top: 0.25em;
+    justify-content: start;
+
+
+}
+
+.upper-icons > form > button {
+    background: none;
+    box-shadow: none;
+    color: #41c27d;
+}
+
+.upper-icons > form > button > i {
+    font-size: xx-large;
+
+}
 
 .search-bar > input {
     background: transparent linear-gradient(180deg, #087d4c 0%, #309a70 100%) 0 0 no-repeat padding-box;
@@ -233,6 +248,7 @@ main {
     grid-template-areas:
     "logo right-side"
     "top-priority right-side";
+    margin: auto 3em;
 }
 
 #logo-main {
@@ -264,13 +280,32 @@ main {
     margin-top: 0.3em;
 }
 
+.mp-announcement {
+    flex-direction: column;
+}
+
+.meetings-page > .mp-announcement > div > img {
+    width: 14vw;
+    height: 20vh;
+}
+
+.mp-announcement > .meeting > .meet-main-section {
+    height: 20vh;
+}
+
+.mp-announcement > div > div > .meet-header {
+    font-size: medium;
+}
+
+.mp-announcement > div > div > .meet-description {
+    font-size: small;
+}
 .announcement {
     border-radius: 0 0 2em 2em;
     font: normal normal bold 16px/13px Arial;
     color: #e8e6e3;
     margin: 0 1vw;
     height: auto;
-
 }
 
 .dog-name, .dog-age, .dog-price {
@@ -305,15 +340,33 @@ main {
     border-radius: 0 0 2em 2em;
 }
 
+#tp {
+    display: flex;
+    gap: 2em;
+    margin: 0;
+    color: #ddd;
+}
+
+.announcement-tp > img {
+    height: 16vh;
+    width: 9vw;
+}
+
 #top-priority-footer {
     font-size: 0.9vw;
     text-align: right;
     margin: 3em 2em 2em 0;
 }
 
-#go-to-walk {
+#go-to-walk,  #most-popular a {
     text-decoration: underline;
     color: #52D38E;
+}
+
+#most-popular a {
+    background: none;
+    box-shadow: none;
+    border: none;
 }
 
 #go-to-walk:hover {
@@ -332,12 +385,11 @@ main {
     flex-direction: column;
     justify-self: baseline;
 
-    color: #505050;
     background-color: #606060;
     border: 1px solid #606060;
     border-radius: 64px;
-    padding: 1em;
     margin-left: 3em;
+    padding-top: 2em;
 }
 
 #most-popular h2 {
@@ -410,6 +462,14 @@ main {
     font-size: 0.7vw;
 }
 
+#most-popular a {
+    width: auto;
+    font-size: 0.9vw;
+    margin-left: 25em;
+    padding-bottom: 2em;
+    line-height: 1.5em;
+}
+
 .walk-page {
     display: flex;
     flex-direction: column;
@@ -433,6 +493,8 @@ main {
 .announcements > .announcement > .announcement-header {
     font-size: 1vw;
 }
+
+
 
 section {
     display: flex;
@@ -458,7 +520,6 @@ section {
 
 .meetings-page > div {
     row-gap: 2em;
-    margin: 2em;
 }
 
 .meetings-page > div > div > img {
@@ -469,7 +530,7 @@ section {
 
 .meet-main-section {
     height: 24vh;
-    width: 50%;
+    max-width: 50em;
     justify-content: center;
     align-items: center;
     display: grid;
@@ -486,6 +547,7 @@ section {
     grid-area: header;
     text-align: center;
     font-size: 1.8em;
+    margin-left: 1em;
 }
 
 .meet-description {
@@ -504,23 +566,29 @@ section {
     border-radius: 0.6em;
     display: flex;
     flex-direction: column;
-    padding: 1vw 2vh;
+    padding: 2em 3em;
+}
+
+.meet-going > header {
+    font-size: large;
 }
 
 .meet-going-label {
     display: flex;
     justify-content: space-between;
+    column-gap: 0.5em;
     margin-top: 1.5em;
     margin-left: 1em;
     margin-right: 1em;
     text-align: center;
-    font: normal normal normal 1vw/1.2vw Arial;
+    font: normal normal normal 1.2em/1.2em Arial;
     font-weight: 700;
 }
 
 .meet-buttons {
     grid-area: buttons;
     justify-self: center;
+
 }
 
 .meet-buttons > button {
@@ -652,6 +720,7 @@ div.messages {
 @media only screen and (max-device-width: 420px) {
     .container {
         flex-direction: column;
+        row-gap: 10em;
     }
 
     .login-container, .logo {
@@ -660,6 +729,10 @@ div.messages {
 
     .logo > img {
         width: auto;
+    }
+
+    #logo-main {
+        margin-top: 10em;
     }
 
     form {
@@ -706,12 +779,16 @@ div.messages {
 
     .main-page {
         display: flex;
-        row-gap: 15em;
+        row-gap: 13em;
     }
 
     #most-popular {
         margin: 0;
         height: 40%;
+    }
+
+    #most-popular h2 {
+        font-size: 4.5em;
     }
 
     main {
@@ -721,6 +798,18 @@ div.messages {
 
     #main-header {
         width: 100vw;
+    }
+
+    .upper-icons > form {
+        padding-top: 0;
+        height: 100%;
+        width: 10vw;
+        justify-content: start;
+    }
+
+    .upper-icons > form > button > i {
+        font-size: 2em;
+        margin-top: 0.2em;
     }
 
     nav {
@@ -781,11 +870,18 @@ div.messages {
         padding: 0.3em 0.8em;
     }
 
-
     .meet-buttons {
         font-size: 2em;
     }
 
+    .meet-going-label {
+        margin-left: 0;
+        margin-right: 0;
+        text-align: center;
+        font: normal normal normal 1vw/2.2vw Arial;
+        font-weight: 500;
+        font-size: medium;
+    }
     .announcements {
         display: flex;
         flex-direction: column;
@@ -794,5 +890,46 @@ div.messages {
    .announcements > .announcement > .announcement-header {
        font-size: 2.5em;
    }
+
+   #top-priority {
+       width: 70%;
+   }
+
+   #top-priority h2 {
+       font-size: 5em;
+   }
+
+   #tp {
+       flex-direction: row;
+   }
+
+   .announcement-tp {
+       width: 20em;
+   }
+
+   .announcement-tp > img {
+       width: 20em;
+   }
+
+   .announcement-header {
+       font-size: large;
+   }
+
+    .mp-announcement > .meeting > .meet-main-section {
+        height: 10vh;
+    }
+
+    .meetings-page > .mp-announcement > div > img  {
+        height: 10vh;
+    }
+
+
+    .meetings-page  > div > div {
+        margin: 5em 4em;
+    }
+
+    .meet-header {
+        line-height: 1.5em;
+    }
 }
 

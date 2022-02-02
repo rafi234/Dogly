@@ -53,7 +53,7 @@ class WalkController extends AppController
                 $_FILES['file']['name']
             );
 
-            $this->walkRepository->addWalk($walk, $id_user);
+            $this->walkRepository->addWalk($walk, $id_user, $_COOKIE['id_user']);
 
             return $this->render('walkPage', [
                 'walks' => $this->walkRepository->getWalks(),
@@ -65,7 +65,7 @@ class WalkController extends AppController
     }
 
     public function addTopPriorityWalks() {
-        return $this->render('walkPage', [
+        return $this->render('mainPage', [
             'walks' => $this->walkRepository->getWalks(' ORDER BY id_dog'),
             'messages' => $this->message
         ]);

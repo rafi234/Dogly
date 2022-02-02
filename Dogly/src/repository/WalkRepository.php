@@ -5,37 +5,13 @@ require_once __DIR__ . '/../models/Walk.php';
 
 class WalkRepository extends Repository
 {
-//    public function getWalk(int $id): ?Walk
-//    {
-//        $stmt = parent::getRepository()->connect()->prepare('
-//            SELECT * FROM walk WHERE id = :id
-//        ');
-//
-//        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
-//        $stmt->execute();
-//
-//        $walk = $stmt->fetch(PDO::FETCH_ASSOC);
-//
-//        if ($walk == false) {
-//            return null;
-//        }
-//
-//        return new Walk(
-//            $walk['id_dog'],
-//            $walk['name'],
-//            $walk['age'],
-//            $walk['date'],
-//            $walk['price'],
-//            $walk['image']
-//        );
-//    }
-
-    public function addWalk(Walk $walk, int $id): void
+    public function addWalk(Walk $walk, int $id_dog, int $id_user): void
     {
         $date = new DateTime();
-        $stmt = parent::getRepository()->connect()->prepare('
+        $db = parent::getRepository()->connect();
+        $stmt = $db->prepare('
          INSERT INTO walk (id_dog, date, price, dog_picture, created_at, id_assigned_by)
-         VALUES (?, ?, ?, ?, ?, ?)
+         VALUES (?, ?, ?, ?, ?, ?) RETURNING id
         ');
 
         $stmt->execute([
@@ -44,7 +20,18 @@ class WalkRepository extends Repository
             $walk->getPrice(),
             $walk->getImage(),
             $date->format('Y-m-d H:i'),
-            $id
+            $id_dog
+        ]);
+
+        $id_walk = $db->lastInsertId();
+
+        $stmt = $db->prepare('
+        INSERT INTO user_walk (id_user, id_walk) VALUES (?, ?)
+        ');
+
+        $stmt->execute([
+            $id_user,
+            $id_walk
         ]);
     }
 
