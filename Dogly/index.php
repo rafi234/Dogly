@@ -11,6 +11,7 @@
 
     Routing::get('walkPage', 'WalkController');
     Routing::get('addWalk', 'WalkController');
+    Routing::get('addTopPriorityWalks', 'WalkController');
 
     Routing::get('meetings', 'MeetingsController');
     Routing::get('addMeeting', 'MeetingsController');

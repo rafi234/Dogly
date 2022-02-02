@@ -28,8 +28,8 @@
                 </div>
                 <input name="login" type="text" placeholder="login">
                 <input name="password" type="password" placeholder="password">
-                <button class="login-button" type="submit">sign in</button>
-                <a href="http://localhost:8080/registration" class="login-buttons">register</a>
+                <button class="login-buttons" type="submit">sign in</button>
+                <a class="login-buttons" href="http://localhost:8080/registration">register</a>
             </form>
         </div>
 

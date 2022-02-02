@@ -2,15 +2,28 @@
 
 class Dog
 {
+    private $id_user;
     private $name;
-    private $breed;
     private $age;
+    private $breed;
 
-    public function __construct(string $name, string $breed, string $age)
+
+    public function __construct(int $id_user, string $name, string $age, string $breed = 'kundel')
     {
+        $this->id_user = $id_user;
         $this->name = $name;
-        $this->breed = $breed;
         $this->age = $age;
+        $this->breed = $breed;
+    }
+
+    public function getId(): int
+    {
+        return $this->id_user;
+    }
+
+    public function setId(int $id): void
+    {
+        $this->id_user = $id;
     }
 
     public function getName(): string
@@ -42,7 +55,4 @@ class Dog
     {
         $this->age = $age;
     }
-
-
-
 }

@@ -14,7 +14,6 @@ class SecurityController extends AppController {
 
         $email = $_POST["login"];
 
-
         $user = $userRepository->getUser($email);
 
         if(!$user){
@@ -28,6 +27,8 @@ class SecurityController extends AppController {
         if (!password_verify($_POST["password"], $user->getPassword())) {
             return $this->render('login', ['messages' => ['Wrong password']]);
         }
+
+        setcookie('id_user', $user->getId(), time() + (3600 * 3));
 
         $url = "http://$_SERVER[HTTP_HOST]";
         header("Location: {$url}/mainPage");

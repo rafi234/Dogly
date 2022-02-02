@@ -23,6 +23,7 @@ class UserRepository extends  Repository
        }
 
        return new User(
+           $user['id_user'],
            $user['email'],
            $user['password'],
            $user['name'],

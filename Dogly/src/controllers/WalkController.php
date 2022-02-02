@@ -12,12 +12,14 @@ class WalkController extends AppController
     const SUPPORTED_TYPES = ['image/png', 'image/PNG', 'image/jpeg', 'image/JPEG'];
 
     private $walkRepository;
+    private $dogRepository;
     private $message = [];
 
     public function __construct()
     {
         parent::__construct();
         $this->walkRepository = new WalkRepository();
+        $this->dogRepository = new DogRepository();
     }
 
     public function walkPage(){
@@ -33,15 +35,25 @@ class WalkController extends AppController
                 $_FILES['file']['tmp_name'],
                 dirname(__DIR__).self::UPLOAD_DIRECTORY.$_FILES['file']['name']
             );
+            $id_user = $_COOKIE['id_user'];
+
+            $dog_id = $this->dogRepository->getDogId($id_user, $_POST['dogAge'], $_POST['dogName']);
+
+            if($dog_id === 0) {
+                $this->dogRepository->addDog(new Dog($id_user, $_POST['dogName'], $_POST['dogAge']));
+                $dog_id = $this->dogRepository->getDogId($id_user, $_POST['dogAge'], $_POST['dogName']);
+            }
 
             $walk = new Walk(
+                $dog_id,
                 $_POST['dogName'],
                 $_POST['dogAge'],
                 $_POST['date']." ".$_POST['time'],
                 $_POST['price'],
                 $_FILES['file']['name']
             );
-            $this->walkRepository->addWalk($walk);
+
+            $this->walkRepository->addWalk($walk, $id_user);
 
             return $this->render('walkPage', [
                 'walks' => $this->walkRepository->getWalks(),
@@ -50,6 +62,14 @@ class WalkController extends AppController
         }
 
         return $this->render('addWalk', ['messages' => $this->message]);
+    }
+
+    public function addTopPriorityWalks() {
+        return $this->render('walkPage', [
+            'walks' => $this->walkRepository->getWalks(' ORDER BY id_dog'),
+            'messages' => $this->message
+        ]);
+
     }
 
     private function validate(array $file): bool

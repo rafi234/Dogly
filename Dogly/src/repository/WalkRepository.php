@@ -5,31 +5,32 @@ require_once __DIR__ . '/../models/Walk.php';
 
 class WalkRepository extends Repository
 {
-    public function getWalk(int $id): ?Walk
-    {
-        $stmt = parent::getRepository()->connect()->prepare('
-            SELECT * FROM walk WHERE id = :id
-        ');
+//    public function getWalk(int $id): ?Walk
+//    {
+//        $stmt = parent::getRepository()->connect()->prepare('
+//            SELECT * FROM walk WHERE id = :id
+//        ');
+//
+//        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+//        $stmt->execute();
+//
+//        $walk = $stmt->fetch(PDO::FETCH_ASSOC);
+//
+//        if ($walk == false) {
+//            return null;
+//        }
+//
+//        return new Walk(
+//            $walk['id_dog'],
+//            $walk['name'],
+//            $walk['age'],
+//            $walk['date'],
+//            $walk['price'],
+//            $walk['image']
+//        );
+//    }
 
-        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
-        $stmt->execute();
-
-        $walk = $stmt->fetch(PDO::FETCH_ASSOC);
-
-        if ($walk == false) {
-            return null;
-        }
-
-        return new Walk(
-            $walk['name'],
-            $walk['age'],
-            $walk['date'],
-            $walk['price'],
-            $walk['image']
-        );
-    }
-
-    public function addWalk(Walk $walk): void
+    public function addWalk(Walk $walk, int $id): void
     {
         $date = new DateTime();
         $stmt = parent::getRepository()->connect()->prepare('
@@ -37,26 +38,22 @@ class WalkRepository extends Repository
          VALUES (?, ?, ?, ?, ?, ?)
         ');
 
-        $assigned_by = 13;
-        $id_dog = 3;
-
         $stmt->execute([
-            $id_dog,
+            $walk->getIdDog(),
             $walk->getDate(),
             $walk->getPrice(),
             $walk->getImage(),
             $date->format('Y-m-d H:i'),
-            $assigned_by
+            $id
         ]);
     }
 
-    public function getWalks(): ?array
+    public function getWalks(string $restOfQuery = ''): ?array
     {
         $result = [];
         $dogRepository = new DogRepository();
-        $stmt = parent::getRepository()->connect()->prepare('
-        SELECT * FROM walk
-        ');
+        $query = 'SELECT * FROM walk'.$restOfQuery;
+        $stmt = parent::getRepository()->connect()->prepare($query);
 
         $stmt->execute();
         $walks = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -64,6 +61,7 @@ class WalkRepository extends Repository
         foreach ($walks as $walk) {
             $dog = $dogRepository->getDog($walk['id_dog']);
             $result[] = new Walk(
+                $dog->getId(),
                 $dog->getName(),
                 $dog->getAge(),
                 $walk['date'],
@@ -74,4 +72,6 @@ class WalkRepository extends Repository
 
         return $result;
     }
+
+
 }

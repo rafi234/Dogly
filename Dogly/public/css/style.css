@@ -1,6 +1,8 @@
 body {
     margin: 0;
     background: #333;
+
+    overflow-x: hidden;
 }
 
 .container {
@@ -52,8 +54,7 @@ button, .login-container > form > a {
     line-height: 2em;
     width: 30%;
     font-size: large;
-    /*color: #52D38E;*/
-    color: #7BBE82;
+    color: #2CB16B;
     cursor: pointer;
 }
 
@@ -77,39 +78,6 @@ input {
     font-size: small;
     color: #111111;
     outline: none;
-}
-
-@media only screen and (max-device-width: 420px) {
-    .container {
-        flex-direction: column;
-    }
-
-    * {
-        font-size: 30px;
-    }
-
-    .login-container, .logo {
-        width: 100%;
-        height: 40%;
-    }
-
-    .center-line {
-        width: 0;
-    }
-
-    form {
-        margin: auto;
-        height: 40%;
-    }
-
-    hr {
-        height: 0;
-        width: 0;
-    }
-
-    button {
-        font-size: xx-large;
-    }
 }
 
 .base-container {
@@ -203,6 +171,7 @@ main {
 }
 
 #main-header {
+    backdrop-filter: blur(1.5em);
     position: fixed;
     width: 80vw;
     height: 8vh;
@@ -210,6 +179,7 @@ main {
     display: flex;
     justify-content: space-between;
     border-bottom: 1px solid #41c27d;
+    box-shadow: 0 3px 6px #00000029;
 }
 
 .search-bar {
@@ -263,7 +233,6 @@ main {
     grid-template-areas:
     "logo right-side"
     "top-priority right-side";
-    margin: 2em;
 }
 
 #logo-main {
@@ -555,8 +524,8 @@ section {
 }
 
 .meet-buttons > button {
-    width: 6vw;
-    font-size: 0.75vw;
+    width: max(6vw, 5rem);
+    font-size: max(0.7em, 0.75vw);
     letter-spacing: 1px;
 }
 
@@ -675,3 +644,155 @@ div.messages {
     box-shadow: 0 0 0.4em red;
     outline: none;
 }
+
+.mobile-nav-toggle {
+    display: none;
+}
+
+@media only screen and (max-device-width: 420px) {
+    .container {
+        flex-direction: column;
+    }
+
+    .login-container, .logo {
+        width: 100%;
+    }
+
+    .logo > img {
+        width: auto;
+    }
+
+    form {
+        margin: auto;
+        height: 40%;
+    }
+
+    hr {
+        display: none;
+    }
+
+    button, .login-container > form > a {
+        font-size: xx-large;
+    }
+
+    input {
+        font-size: xx-large;
+    }
+
+    .registration-container {
+        margin-top: 5em;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .registration {
+        height: auto;
+        width: auto;
+        margin: auto;
+    }
+
+    .registration > form > input {
+        width: 100%
+    }
+
+    .upper-icons > a {
+        width: 10vw;
+    }
+    .search-bar > input {
+        margin-left: 5em;
+        width: 70%;
+        padding: 0.9vh 2em;
+    }
+
+    .main-page {
+        display: flex;
+        row-gap: 15em;
+    }
+
+    #most-popular {
+        margin: 0;
+        height: 40%;
+    }
+
+    main {
+        margin: 0;
+        width: 100vw;
+    }
+
+    #main-header {
+        width: 100vw;
+    }
+
+    nav {
+        width: 80vw;
+        z-index: 20;
+        box-shadow: 0 9px 9px #00000029;
+        transform: translateX(-100%);
+        transition: transform 350ms ease-out;
+    }
+
+    nav[data-visible="true"] {
+        transform: translateX(0%);
+        transition: transform 350ms ease-out;
+    }
+
+    nav > a {
+        margin-left: 12em;
+        margin-top: 2.5em;
+    }
+
+    ul {
+        font-size: 2.5em;
+        padding: 3em;
+        width: calc(80vw - 6em)
+    }
+
+    li {
+        width: 70vw;
+    }
+
+    .mobile-nav-toggle {
+        display: block;
+        position: absolute;
+        background: none;
+        box-shadow: none;
+        font-size: 4.3em;
+        color: #ddd;
+        z-index: 9999;
+        top: -.2em;
+        left: -1.6em;
+    }
+
+    .mobile-nav-toggle:focus, .mobile-nav-toggle:active {
+        background: none;
+    }
+
+    .meetings-page > div > div > img {
+        height: 13vh;
+        width: 33vw;
+    }
+
+    .meet-main-section {
+        height: 13vh;
+    }
+
+    .meetings-page > a,  .walk-page > a{
+        font-size: 1.5rem;
+        padding: 0.3em 0.8em;
+    }
+
+
+    .meet-buttons {
+        font-size: 2em;
+    }
+
+    .announcements {
+        display: flex;
+        flex-direction: column;
+    }
+
+   .announcements > .announcement > .announcement-header {
+       font-size: 2.5em;
+   }
+}
+

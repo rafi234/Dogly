@@ -2,19 +2,31 @@
 
 class Walk
 {
+    private $id_dog;
     private $name;
     private $age;
     private $date;
     private $price;
     private $image;
 
-    public function __construct(string $name, string $age, $date, float $price, string $image)
+    public function __construct(int $id_dog, string $name, string $age, $date, float $price, string $image)
     {
+        $this->id_dog = $id_dog;
         $this->name = $name;
         $this->age = $age;
         $this->date = $date;
         $this->price = $price;
         $this->image = $image;
+    }
+
+    public function getIdDog(): int
+    {
+        return $this->id_dog;
+    }
+
+    public function setIdDog(int $id_dog): void
+    {
+        $this->id_dog = $id_dog;
     }
 
     public function getDate()

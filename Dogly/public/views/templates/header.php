@@ -1,5 +1,6 @@
 <?php
-    echo '<div class="search-bar">
+    echo '
+            <div class="search-bar">
                     <input type="search" placeholder="search">
             </div>
 

@@ -3,14 +3,14 @@
 <head>
     <link rel="stylesheet" type="text/css" href="public/css/style.css">
     <script src="https://kit.fontawesome.com/760d12b685.js" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="./public/js/deleteCookie.js" defer></script>
+    <script type="text/javascript" src="./public/js/nav.js" defer></script>
     <title>MAIN PAGE</title>
 </head>
 
 <body>
     <div class="base-container">
-        <nav>
             <?php include ('templates/navigation.php');?>
-        </nav>
         <main>
             <header id="main-header">
                <?php include ('templates/header.php'); ?>
@@ -55,7 +55,7 @@
                                 </div>
                                 <div class="mp-buttons">
                                     <button type="button">
-                                        Intrested
+                                        Interested
                                     </button>
                                     <button type="submit">
                                         Going
@@ -80,7 +80,7 @@
                                 </div>
                                 <div class="mp-buttons">
                                     <button type="submit">
-                                        Intrested
+                                        Interested
                                     </button>
                                     <button type="submit">
                                         Going
@@ -104,7 +104,7 @@
                                 </div>
                                 <div class="mp-buttons">
                                     <button type="submit">
-                                        Intrested
+                                        Interested
                                     </button>
                                     <button type="submit">
                                         Going

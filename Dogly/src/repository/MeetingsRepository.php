@@ -55,7 +55,7 @@ class MeetingsRepository extends Repository
          VALUES (?, ?, ?, ?, ?, ?, ?)
         ');
 
-        $assigned_by = 12;
+        $assigned_by = 12; //TODO cookies
         $interested = 0;
         $going = 0;
 
